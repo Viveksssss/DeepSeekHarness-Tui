@@ -67,3 +67,6 @@ chmod +x scripts/install-desktop-entry.sh
 当前仅面向 Linux（`AppImage`）。如需 Windows / macOS，可复用同一套
 `main.js`/`preload.js`，在对应平台执行 `electron-builder` 对应 target（macOS 建议
 在 macOS 上构建）。
+
+![](./statics/desktop.png)
+![](./statics/desktop2.png)
