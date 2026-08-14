@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>DeepSeek Harness</title>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; }
+  body {
+    background: radial-gradient(1200px 800px at 50% -10%, #16233f 0%, #0d1117 55%, #090c12 100%);
+    color: #c9d1d9;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    display: grid; place-items: center;
+  }
+  .card { text-align: center; max-width: 420px; padding: 32px; }
+  .mark {
+    width: 84px; height: 84px; margin: 0 auto 22px; border-radius: 20px;
+    background: linear-gradient(135deg, #3b82f6, #06b6d4);
+    box-shadow: 0 12px 40px rgba(59,130,246,.35);
+    display: grid; place-items: center;
+    font-weight: 700; font-size: 30px; color: #fff; letter-spacing: .5px;
+  }
+  h1 { font-size: 20px; font-weight: 650; margin: 0 0 6px; color: #f0f6fc; }
+  p { margin: 0; font-size: 14px; color: #8b949e; }
+  .spinner {
+    width: 26px; height: 26px; margin: 26px auto 0;
+    border: 3px solid rgba(139,148,158,.25); border-top-color: #58a6ff; border-radius: 50%;
+    animation: spin .9s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .error { display: none; margin-top: 22px; text-align: left; }
+  .error.show { display: block; }
+  .error .box {
+    background: rgba(248,81,73,.08); border: 1px solid rgba(248,81,73,.4);
+    border-radius: 10px; padding: 14px 16px;
+  }
+  .error h2 { margin: 0 0 6px; font-size: 14px; color: #ff7b72; }
+  .error pre {
+    margin: 0; font-size: 12px; color: #c9d1d9; white-space: pre-wrap; word-break: break-word;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="mark">DS</div>
+    <h1>DeepSeek Harness</h1>
+    <p>Starting the local harness…</p>
+    <div class="spinner" id="spinner"></div>
+    <div class="error" id="error">
+      <div class="box">
+        <h2 id="error-title">Failed to start</h2>
+        <pre id="error-detail"></pre>
+      </div>
+    </div>
+  </div>
+  <script>
+    window.__setLoadingError = function (title, detail) {
+      var spinner = document.getElementById('spinner');
+      var err = document.getElementById('error');
+      if (spinner) spinner.style.display = 'none';
+      if (err) {
+        err.classList.add('show');
+        document.getElementById('error-title').textContent = title || 'Failed to start';
+        document.getElementById('error-detail').textContent = detail || '';
+      }
+    };
+  </script>
+</body>
+</html>
